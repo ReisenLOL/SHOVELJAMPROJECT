@@ -8,6 +8,7 @@ public class BuildingBlueprint : MonoBehaviour
     public float currentFlux;
     public PlayerController player;
     public SpriteRenderer spriteRenderer;
+    private PlacementHandler placementHandler;
     public float currentState = 0;
     private void Start()
     {
@@ -16,6 +17,7 @@ public class BuildingBlueprint : MonoBehaviour
         requiredFlux = thisBuilding.fluxCost;
         player = thisBuilding.player;
         thisBuilding.enabled = false;
+        placementHandler = FindFirstObjectByType<PlacementHandler>();
     }
 
     private void OnMouseOver()
@@ -24,7 +26,7 @@ public class BuildingBlueprint : MonoBehaviour
         {
             if (player.fluxStored > 0)
             {
-                float amountToChange = player.buildSpeed * Time.deltaTime;
+                float amountToChange = player.fluxMoveSpeed * Time.deltaTime;
                 currentState = currentFlux / requiredFlux;
                 player.fluxStored -= amountToChange;
                 currentFlux += amountToChange;
@@ -32,6 +34,11 @@ public class BuildingBlueprint : MonoBehaviour
                 if (currentFlux >= requiredFlux)
                 {
                     thisBuilding.enabled = true;
+                    placementHandler.placedBuildings.Add(thisBuilding);
+                    foreach (Building building in placementHandler.placedBuildings)
+                    {
+                        building.refreshBuildings = true;
+                    }
                     Destroy(this);
                 }
             }
@@ -40,7 +47,7 @@ public class BuildingBlueprint : MonoBehaviour
         {
             if (currentFlux > 0)
             {
-                float amountToChange = player.buildSpeed * Time.deltaTime;
+                float amountToChange = player.fluxMoveSpeed * Time.deltaTime;
                 currentState = currentFlux / requiredFlux;
                 player.fluxStored += amountToChange;
                 currentFlux -= amountToChange;

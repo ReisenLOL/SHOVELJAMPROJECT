@@ -8,7 +8,8 @@ public class PlayerController : Unit
     
     [Header("[STATS]")] 
     public float moveSpeed;
-    public float buildSpeed;
+
+    public float fluxMoveSpeed;
     public float fluxStored;
     public float fluxMaxCapacity;
 

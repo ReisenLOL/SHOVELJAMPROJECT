@@ -37,4 +37,14 @@ public class FluxGrid : MonoBehaviour
         fluxStorageMaximumTotal += building.fluxMaxCapacity;
         currentFluxStoredTotal += building.currentFlux;
     }
+    public void RemoveBuilding(FluxStorable building)
+    {
+        connectedBuildings.Remove(building);
+        fluxStorageMaximumTotal -= building.fluxMaxCapacity;
+        currentFluxStoredTotal -= building.currentFlux;
+        if (currentFluxStoredTotal < 0)
+        {
+            currentFluxStoredTotal = 0;
+        }
+    }
 }

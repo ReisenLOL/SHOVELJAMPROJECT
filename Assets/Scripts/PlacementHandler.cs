@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class PlacementHandler : MonoBehaviour
 {
     public Building[] allBuildings;
     [Header("[CACHE]")] 
+    public List<Building> placedBuildings = new();
     public Transform buildingUIFrame;
     public Button buttonTemplate;
     public Building selectedBuilding;
@@ -14,11 +16,14 @@ public class PlacementHandler : MonoBehaviour
     private Grid placementGrid;
     public Transform buildingFolder;
     private int rotationAmount;
+    private float selectionSize;
     public bool createPlaceholder;
     public bool isBuilding;
     public PlayerController player;
     private Vector3 worldPos;
     private Camera cam;
+    private Vector3 buildingGridEvenCell;
+    private Vector3 buildingGridCenterCell;
 
     private void Start()
     {
@@ -46,7 +51,16 @@ public class PlacementHandler : MonoBehaviour
         {
             worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
             worldPos.z = 0;
-            placeholderBuilding.transform.position = placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos));
+            buildingGridEvenCell = placementGrid.WorldToCell(worldPos);
+            buildingGridCenterCell = placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos));
+            if (selectionSize % 2 == 0)
+            {
+                placeholderBuilding.transform.position = buildingGridEvenCell;
+            }
+            else
+            {
+                placeholderBuilding.transform.position = buildingGridCenterCell;
+            }
             placeholderBuilding.transform.rotation = Quaternion.Euler(0,0,rotationAmount);
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -71,12 +85,19 @@ public class PlacementHandler : MonoBehaviour
     private void HandlePlacement()
     {
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, LayerMask.GetMask("Building"));
-        if (hit || Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), (Vector2)selectedBuilding.transform.localScale, 0, LayerMask.GetMask("Building")))
+        if (hit )//|| Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), (Vector2)selectedBuilding.transform.localScale, 0, LayerMask.GetMask("Building")))
         {
             return;
         }
         Building newBuilding = Instantiate(selectedBuilding, buildingFolder);
-        newBuilding.transform.position = placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos));
+        if (selectionSize % 2 == 0)
+        {
+            newBuilding.transform.position = buildingGridEvenCell;
+        }
+        else
+        {
+            newBuilding.transform.position = buildingGridCenterCell;
+        }
         newBuilding.transform.rotation = Quaternion.Euler(0,0,rotationAmount);
         newBuilding.player = player;
         newBuilding.GetComponent<SpriteRenderer>().color = Color.black;
@@ -87,6 +108,7 @@ public class PlacementHandler : MonoBehaviour
         if (!isBuilding)
         {
             selectedBuilding = building;
+            selectionSize = selectedBuilding.GetComponent<BoxCollider2D>().size.x;
             CreatePlaceholderBuilding();
             isBuilding = true;   
         }
