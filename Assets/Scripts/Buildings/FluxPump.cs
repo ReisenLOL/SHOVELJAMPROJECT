@@ -8,7 +8,7 @@ public class FluxPump : FluxStorable
     public bool canProduce;
     public Transform resourceDetection;
 
-    private void Start()
+    protected virtual void Start()
     {
         canProduce = Physics2D.OverlapCircle(resourceDetection.position, 0.1f, LayerMask.GetMask("Resource"));
     }

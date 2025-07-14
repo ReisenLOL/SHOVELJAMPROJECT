@@ -30,6 +30,11 @@ public class Pipe : FluxStorable
                     isFluxStorable.connectedGrid = connectedGrid;
                     connectedGrid.AddBuilding(isFluxStorable);
                 }
+                else if (!connectedGrid && isFluxStorable.connectedGrid)
+                {
+                    connectedGrid = isFluxStorable.connectedGrid;
+                    connectedGrid.AddBuilding(this);
+                }
                 else if (!connectedGrid && !isFluxStorable.connectedGrid)
                 {
                     GameObject newFluxGrid = new GameObject();

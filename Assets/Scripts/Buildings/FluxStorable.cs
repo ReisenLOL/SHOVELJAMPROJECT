@@ -7,6 +7,7 @@ public class FluxStorable : Building
     public float fluxMaxCapacity;
     public float currentFlux;
     public bool maxCapacity;
+    public bool hasInterface;
     public FluxGrid connectedGrid;
     public Transform[] detectPipes;
     public List<FluxStorable> connectedPipes = new();
@@ -52,17 +53,15 @@ public class FluxStorable : Building
         }
     }
 
-    protected override void OnMouseOver()
+    public void PlayerDrainFlux()
     {
-        base.OnMouseOver();
-        if (Input.GetKey(KeyCode.E))
+        if (hasInterface)
         {
             float change = player.fluxMoveSpeed * Time.deltaTime;
-            player.fluxStored += change;
-            DrainFlux(change);
+            player.StoreFlux(change);
+            DrainFlux(change);   
         }
     }
-
     protected virtual void FindPipes()
     {
         foreach (Transform detectPipe in detectPipes)
@@ -75,6 +74,11 @@ public class FluxStorable : Building
                 {
                     isPipe.connectedGrid = connectedGrid;
                     connectedGrid.AddBuilding(isPipe);
+                }
+                else if (!connectedGrid && isPipe.connectedGrid)
+                {
+                    connectedGrid = isPipe.connectedGrid;
+                    connectedGrid.AddBuilding(this);
                 }
                 else if (!connectedGrid && !isPipe.connectedGrid)
                 {

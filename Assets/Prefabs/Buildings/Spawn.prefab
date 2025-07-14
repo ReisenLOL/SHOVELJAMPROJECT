@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3208449285693566503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,13 +56,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3371790825419812237}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1112895280822288807}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &5734545098696528856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 6131951814561416600}
   - component: {fileID: 1772452584482741451}
   m_Layer: 6
-  m_Name: FluxStorage
+  m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6052897112426162762, guid: fb0c708a00ba838988766d05514ceefc, type: 3}
+  m_Sprite: {fileID: -5436163444842754299, guid: f67ea795be727440c8eea47ecd05d3e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,12 +227,12 @@ MonoBehaviour:
   maxHealth: 100
   fluxCost: 20
   player: {fileID: 0}
-  buildingID: Flux Storage
+  buildingID: Spawn
   refreshBuildings: 0
   fluxMaxCapacity: 1000
   currentFlux: 0
   maxCapacity: 0
-  hasInterface: 0
+  hasInterface: 1
   connectedGrid: {fileID: 0}
   detectPipes:
   - {fileID: 8982503448010092056}
@@ -291,13 +291,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 6, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &1772452584482741451
 Rigidbody2D:

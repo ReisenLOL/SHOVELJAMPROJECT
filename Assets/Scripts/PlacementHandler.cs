@@ -85,7 +85,7 @@ public class PlacementHandler : MonoBehaviour
     private void HandlePlacement()
     {
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, LayerMask.GetMask("Building"));
-        if (hit )//|| Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), (Vector2)selectedBuilding.transform.localScale, 0, LayerMask.GetMask("Building")))
+        if (hit || Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), selectedBuilding.GetComponent<BoxCollider2D>().size/2, 0, LayerMask.GetMask("Building")))
         {
             return;
         }
