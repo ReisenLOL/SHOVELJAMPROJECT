@@ -128,10 +128,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1112895280822288807}
   - component: {fileID: 1182557165152767538}
+  - component: {fileID: 2778177135423272274}
   - component: {fileID: 5011146188962352117}
   - component: {fileID: 6131951814561416600}
   - component: {fileID: 1772452584482741451}
-  - component: {fileID: 6774842004941601895}
   m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
@@ -211,6 +211,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2778177135423272274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628134785909848455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24264a16fe92bacd786a89b5f9ff24e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  fluxCost: 20
+  player: {fileID: 0}
+  buildingID: Turret
+  description: The Rule of Danmaku.
+  refreshBuildings: 0
+  fluxMaxCapacity: 0
+  currentFlux: 0
+  maxCapacity: 0
+  hasInterface: 0
+  connectedGrid: {fileID: 0}
+  detectPipes:
+  - {fileID: 8982503448010092056}
+  connectedPipes: []
+  projectile: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
+  range: 8
+  projectileSpeed: 16
+  projectileDamage: 20
+  fireRate: 0.5
+  currentFiringTime: 0
+  fluxFiringCost: 10
+  targetList: []
 --- !u!114 &5011146188962352117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,38 +335,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6774842004941601895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628134785909848455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24264a16fe92bacd786a89b5f9ff24e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  fluxCost: 10
-  player: {fileID: 0}
-  buildingID: Turret
-  description: The rule of Danmaku.
-  refreshBuildings: 0
-  fluxMaxCapacity: 0
-  currentFlux: 0
-  maxCapacity: 0
-  hasInterface: 0
-  connectedGrid: {fileID: 0}
-  detectPipes:
-  - {fileID: 821703600620687507}
-  connectedPipes: []
-  projectile: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
-  range: 4
-  projectileSpeed: 16
-  projectileDamage: 20
-  fireRate: 0.5
-  currentFiringTime: 0
-  fluxFiringCost: 10
-  targetList: []

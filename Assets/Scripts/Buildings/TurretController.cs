@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurretController : FluxStorable
@@ -25,9 +26,27 @@ public class TurretController : FluxStorable
     protected override void Update()
     {
         base.Update();
+        GetClosestTarget();
         FireProjectile();
     }
-
+    private void GetClosestTarget()
+    {
+        float distanceToClosestTarget = 1000000f;
+        foreach (Collider2D target in targetList.ToList())
+        {
+            if (target == null)
+            {
+                targetList.Remove(target);
+                continue;
+            }
+            float sqrDistance = Vector3.SqrMagnitude(transform.position - target.transform.position);
+            if (sqrDistance < distanceToClosestTarget)
+            {
+                closestTarget = target.gameObject;
+                distanceToClosestTarget = sqrDistance;
+            }
+        }
+    }
     private void FireProjectile()
     {
         currentFiringTime += Time.deltaTime;

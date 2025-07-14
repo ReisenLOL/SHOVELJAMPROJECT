@@ -81,7 +81,7 @@ public class PlayerDrainStoreFlux : MonoBehaviour
                 infoPanel.SetActive(true);
                 buildingNameText.text = isBuilding.buildingID;
                 buildingDescriptionText.text = isBuilding.description;
-                if (hit.collider.TryGetComponent(out FluxStorable isFluxStorable))
+                if (hit.collider.TryGetComponent(out FluxStorable isFluxStorable) && isFluxStorable.fluxMaxCapacity != 0)
                 {
                     fluxSliderUI.SetActive(true);
                     fluxSlider.localScale = new Vector3(isFluxStorable.currentFlux/isFluxStorable.fluxMaxCapacity, fluxSlider.localScale.y);

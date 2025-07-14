@@ -1529,12 +1529,13 @@ MonoBehaviour:
   allBuildings:
   - {fileID: 3558133283945697520, guid: cc9fe72ff2e74e7c6be68ab30853b915, type: 3}
   - {fileID: 3188855288022095944, guid: 992e402cf7ee5ccf19d4cb784e1c67d2, type: 3}
-  - {fileID: 6774842004941601895, guid: 3f979222fd8eb99f2a5d0ad0aa9b2a2e, type: 3}
+  - {fileID: 2778177135423272274, guid: 3339ce091bfe0c90ebb7cea3c6478aa5, type: 3}
   - {fileID: 1115196585640855629, guid: 860daba6ea8f82b83b6a11a9c1bb09f8, type: 3}
   - {fileID: 1115196585640855629, guid: eeabfccf11722fe8899169b8b5d3aa60, type: 3}
   - {fileID: 1115196585640855629, guid: 1f5961378d5df4b90af9cf43207be045, type: 3}
   - {fileID: 1115196585640855629, guid: 6d5567fc3462bec85bccacac360c26af, type: 3}
   - {fileID: 3188855288022095944, guid: 0010b00532e7920db9fcabb87cb420ec, type: 3}
+  - {fileID: 2778177135423272274, guid: 3339ce091bfe0c90ebb7cea3c6478aa5, type: 3}
   placedBuildings: []
   buildingUIFrame: {fileID: 298511271}
   buttonTemplate: {fileID: 303258016}
@@ -1641,7 +1642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1117403247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3576,7 +3577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2118971711
 RectTransform:
   m_ObjectHideFlags: 0
