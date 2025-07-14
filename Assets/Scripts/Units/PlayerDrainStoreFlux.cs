@@ -34,6 +34,16 @@ public class PlayerDrainStoreFlux : MonoBehaviour
             if (hit && hit.collider.TryGetComponent(out BuildingBlueprint isBlueprint))
             {
                 isBlueprint.BlueprintStoreFlux();
+                player.canFire = false;
+            }
+            if (hit && hit.collider.TryGetComponent(out FluxStorable isFluxStorable))
+            {
+                isFluxStorable.PlayerStoreFlux();
+                player.canFire = false;
+            }
+            if (!hit)
+            {
+                player.canFire = true;
             }
         }
         if (Input.GetKey(KeyCode.E))
@@ -42,10 +52,16 @@ public class PlayerDrainStoreFlux : MonoBehaviour
             if (hit && hit.collider.TryGetComponent(out BuildingBlueprint isBlueprint))
             {
                 isBlueprint.BlueprintDrainFlux();
+                player.canFire = false;
             }
             if (hit && hit.collider.TryGetComponent(out FluxStorable isFluxStorable))
             {
                 isFluxStorable.PlayerDrainFlux();
+                player.canFire = false;
+            }
+            if (!hit)
+            {
+                player.canFire = true;
             }
         }
         if (Input.GetMouseButton(1))
@@ -77,10 +93,14 @@ public class PlayerDrainStoreFlux : MonoBehaviour
                 infoPanel.SetActive(false);
             }
         }
-
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             infoPanel.SetActive(false);
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0))
+        {
+            player.canFire = true;
         }
     }
 }

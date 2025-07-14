@@ -20,7 +20,8 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < waveList[currentWaveNumber].amountToSpawn; i++)
         {
-            Instantiate(waveList[currentWaveNumber].enemyToSpawn, enemyFolder);
+            EnemyController newEnemy = Instantiate(waveList[currentWaveNumber].enemyToSpawn, enemyFolder);
+            newEnemy.transform.position = spawnPoint.position;
         }
         currentWaveNumber++;
     }

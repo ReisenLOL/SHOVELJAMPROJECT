@@ -9,7 +9,16 @@ public class EnemyController : Unit
     public int speed;
     private NavMeshAgent agent;
     private PlayerController player;
-    private Core core;
+    private CoreController core;
+    public float range;
+    
+    [Header("[PROJECTILE]")] 
+    public MoveProjectile projectile;
+    public float projectileSpeed;
+    public float projectileDamage;
+    public float fireRate;
+    public float currentFiringTime;
+
 
     [Header("CACHE")] 
     public List<Collider2D> targetList = new();
@@ -21,12 +30,14 @@ public class EnemyController : Unit
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         player = FindFirstObjectByType<PlayerController>();
-        core = FindFirstObjectByType<Core>();
+        core = FindFirstObjectByType<CoreController>();
+        CreateTargetting();
     }
     void Update()
     {
         Movement();
         GetClosestTarget();
+        FireProjectile();
     }
 
     private void GetClosestTarget()
@@ -59,5 +70,33 @@ public class EnemyController : Unit
         {
             agent.SetDestination(core.transform.position);
         }
+    }
+    private void FireProjectile()
+    {
+        currentFiringTime += Time.deltaTime;
+        if (closestTarget && currentFiringTime >= fireRate)
+        {
+            MoveProjectile newProjectile = Instantiate(projectile);
+            newProjectile.transform.position = transform.position;
+            newProjectile.speed = projectileSpeed;
+            newProjectile.damage = projectileDamage;
+            newProjectile.RotateToTarget(closestTarget.transform.position);
+            newProjectile.isEnemyBullet = true;
+            currentFiringTime = 0;
+        }
+    }
+
+    private void CreateTargetting()
+    {
+        GameObject newTargetDetection = new GameObject();
+        newTargetDetection.name = "EnemyTargetting";
+        newTargetDetection.transform.position = transform.position;
+        newTargetDetection.transform.SetParent(transform);
+        newTargetDetection.layer = LayerMask.NameToLayer("EnemyTargetDetection");
+        CircleCollider2D newCC2D = newTargetDetection.AddComponent<CircleCollider2D>();
+        newCC2D.radius = range;
+        newCC2D.isTrigger = true;
+        EnemyDetectTargets newEDT = newTargetDetection.AddComponent<EnemyDetectTargets>();
+        newEDT.thisEnemy = this;
     }
 }

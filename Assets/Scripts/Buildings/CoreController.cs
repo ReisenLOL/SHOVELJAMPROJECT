@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Core : FluxPump
+public class CoreController : FluxPump
 {
     protected override void Start()
     {

@@ -52,7 +52,15 @@ public class FluxStorable : Building
             }
         }
     }
-
+    public void PlayerStoreFlux()
+    {
+        if (hasInterface)
+        {
+            float change = player.fluxMoveSpeed * Time.deltaTime;
+            player.DrainFlux(change);
+            StoreFlux(change);   
+        }
+    }
     public void PlayerDrainFlux()
     {
         if (hasInterface)

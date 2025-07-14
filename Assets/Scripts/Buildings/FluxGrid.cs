@@ -12,6 +12,14 @@ public class FluxGrid : MonoBehaviour
         if (!maxCapacityTotal)
         {
             currentFluxStoredTotal += flux;
+            foreach (FluxStorable storable in connectedBuildings)
+            {
+                if (storable.fluxMaxCapacity != 0 && !storable.maxCapacity && storable.currentFlux + flux < storable.fluxMaxCapacity)
+                {
+                    storable.StoreFlux(flux);
+                    break;
+                }
+            }
             if (currentFluxStoredTotal >= fluxStorageMaximumTotal)
             {
                 maxCapacityTotal = true;
@@ -21,6 +29,14 @@ public class FluxGrid : MonoBehaviour
     }
     public void DrainFluxTotal(float flux)
     {
+        foreach (FluxStorable storable in connectedBuildings)
+        {
+            if (storable.fluxMaxCapacity != 0 && storable.currentFlux - flux < 0)
+            {
+                storable.DrainFlux(flux);
+                break;
+            }
+        }
         if (currentFluxStoredTotal > flux)
         {
             currentFluxStoredTotal -= flux;

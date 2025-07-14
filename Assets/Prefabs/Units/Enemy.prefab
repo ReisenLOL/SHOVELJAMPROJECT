@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6782081916547653967}
   - component: {fileID: 8245872066682050031}
   - component: {fileID: 6362515102140430822}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,12 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   speed: 4
+  range: 2
+  projectile: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
+  projectileSpeed: 10
+  projectileDamage: 10
+  fireRate: 0.8
+  currentFiringTime: 0
   targetList: []
 --- !u!195 &6362515102140430822
 NavMeshAgent:

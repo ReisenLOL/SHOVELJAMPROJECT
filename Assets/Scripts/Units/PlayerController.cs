@@ -16,12 +16,23 @@ public class PlayerController : Unit
     public float fluxMaxCapacity;
     public bool atMaxCapacity;
 
+    [Header("[PROJECTILE]")] 
+    public bool canFire;
+    public MoveProjectile projectile;
+    public float projectileSpeed;
+    public float projectileDamage;
+    public float fireRate;
+    public float fireFluxCost;
+    public float currentFiringTime;
+    
     [Header("[CACHE]")] 
     public Transform fluxStoredBar;
     public TextMeshProUGUI fluxStoredText;
     public CinemachineCamera cam;
+    public Camera gameCam;
     private void Start()
     {
+        gameCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         UpdateFluxBar();
     }
@@ -32,6 +43,7 @@ public class PlayerController : Unit
         moveDirection.y = Input.GetAxisRaw("Vertical");
         moveDirection.Normalize();
         CameraZoom();
+        FireProjectile();
     }
 
     private void FixedUpdate()
@@ -82,6 +94,23 @@ public class PlayerController : Unit
             {
                 cam.Lens.OrthographicSize = 1f;
             }
+        }
+    }
+
+    private void FireProjectile()
+    {
+        currentFiringTime += Time.deltaTime;
+        if (canFire && Input.GetMouseButton(0) && currentFiringTime >= fireRate && fluxStored >= fireFluxCost)
+        {
+            Vector3 worldPos = gameCam.ScreenToWorldPoint(Input.mousePosition);
+            worldPos.z = 0;
+            MoveProjectile newProjectile = Instantiate(projectile);
+            newProjectile.transform.position = transform.position;
+            newProjectile.speed = projectileSpeed;
+            newProjectile.damage = projectileDamage;
+            newProjectile.RotateToTarget(worldPos);
+            DrainFlux(fireFluxCost);
+            currentFiringTime = 0;
         }
     }
 }
