@@ -8,9 +8,21 @@ public class FluxPump : FluxStorable
     public bool canProduce;
     public Transform resourceDetection;
 
-    protected virtual void Start()
+    protected override void Start()
     {
-        canProduce = Physics2D.OverlapCircle(resourceDetection.position, 0.1f, LayerMask.GetMask("Resource"));
+        base.Start();
+        if (resourceDetection)
+        {
+            Collider2D detectGeyser = Physics2D.OverlapCircle(resourceDetection.position, 0.1f, LayerMask.GetMask("Resource"));
+            canProduce = detectGeyser;   
+            if (canProduce)
+            {
+                if (detectGeyser.TryGetComponent(out Geyser geyser))
+                {
+                    geyser.hasPump = true;
+                }
+            }
+        }
     }
 
     protected override void Update()
@@ -18,7 +30,12 @@ public class FluxPump : FluxStorable
         base.Update();
         if (canProduce)
         {
-            StoreFlux(fluxToProduce * fluxProductionRate * Time.deltaTime);
+            ProduceFlux();
         }
+    }
+
+    protected virtual void ProduceFlux()
+    {
+        StoreFlux(fluxToProduce * fluxProductionRate * Time.deltaTime);
     }
 }

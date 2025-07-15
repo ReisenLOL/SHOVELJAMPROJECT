@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1112895280822288807}
   - component: {fileID: 1182557165152767538}
-  - component: {fileID: 3188855288022095944}
+  - component: {fileID: 5239525824516033864}
   - component: {fileID: 5011146188962352117}
   - component: {fileID: 6131951814561416600}
   - component: {fileID: 1772452584482741451}
@@ -211,7 +211,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3188855288022095944
+--- !u!114 &5239525824516033864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,23 +220,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8628134785909848455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a31441c814853b7b815690db97d646b, type: 3}
+  m_Script: {fileID: 11500000, guid: a908bd44b9024a414884fb6abd0afb15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 20
-  player: {fileID: 0}
-  buildingID: Spawn
+  fluxCost: 50
+  buildingID: Respawn Point
+  description: 
   refreshBuildings: 0
-  fluxMaxCapacity: 1000
-  currentFlux: 0
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 0}
+  currentState: 0
+  fluxMaxCapacity: 150
+  currentFlux: 150
   maxCapacity: 0
   hasInterface: 1
   connectedGrid: {fileID: 0}
   detectPipes:
   - {fileID: 8982503448010092056}
   connectedPipes: []
+  requiredFluxToRespawn: 100
+  canRespawn: 1
 --- !u!114 &5011146188962352117
 MonoBehaviour:
   m_ObjectHideFlags: 0

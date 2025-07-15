@@ -18,8 +18,9 @@ public class TurretController : FluxStorable
     public List<Collider2D> targetList = new();
     private GameObject closestTarget;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         CreateTargetting();
     }
 

@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Pipe : FluxStorable
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         FindPipes();
     }
 

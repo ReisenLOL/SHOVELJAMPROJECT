@@ -30,6 +30,7 @@ public class MapGeneration : MonoBehaviour
     void Start()
     {
         GenerateMap();
+        FindFirstObjectByType<WaveManager>().UpdateEmptyGeysers();
     }
 
     public void GenerateMap()

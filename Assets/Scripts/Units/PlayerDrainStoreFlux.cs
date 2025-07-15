@@ -53,11 +53,13 @@ public class PlayerDrainStoreFlux : MonoBehaviour
             {
                 isBlueprint.BlueprintDrainFlux();
                 player.canFire = false;
+                return;
             }
             if (hit && hit.collider.TryGetComponent(out FluxStorable isFluxStorable))
             {
                 isFluxStorable.PlayerDrainFlux();
                 player.canFire = false;
+                return;
             }
             if (!hit)
             {
@@ -70,6 +72,7 @@ public class PlayerDrainStoreFlux : MonoBehaviour
             if (hit)
             {
                 hit.collider.gameObject.SetActive(false);
+                return;
             }
         }
 

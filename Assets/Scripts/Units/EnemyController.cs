@@ -26,6 +26,7 @@ public class EnemyController : Unit
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;

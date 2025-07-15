@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +38,12 @@ public class PlacementHandler : MonoBehaviour
             newButton.onClick.AddListener(() => SelectBuilding(building));
             newButton.GetComponentInChildren<TextMeshProUGUI>().text = building.fluxCost.ToString();
             newButton.transform.Find("BuildingSprite").GetComponent<Image>().sprite = building.GetComponent<SpriteRenderer>().sprite;
+        }
+
+        placedBuildings = FindObjectsByType<Building>(FindObjectsSortMode.None).ToList();
+        foreach (Building building in placedBuildings)
+        {
+            building.player = player;
         }
     }
 

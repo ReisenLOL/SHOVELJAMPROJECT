@@ -30,10 +30,12 @@ public class PlayerController : Unit
     public TextMeshProUGUI fluxStoredText;
     public CinemachineCamera cam;
     public Camera gameCam;
+    private RespawnUIManager respawnUIManager;
     private void Start()
     {
         gameCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
+        respawnUIManager = FindFirstObjectByType<RespawnUIManager>();
         UpdateFluxBar();
     }
 
@@ -65,7 +67,7 @@ public class PlayerController : Unit
     }
     public void DrainFlux(float flux)
     {
-        if (fluxStored > flux)
+        if (fluxStored > flux && fluxStored > 0)
         {
             fluxStored -= flux;
             if (atMaxCapacity)
@@ -82,7 +84,8 @@ public class PlayerController : Unit
     }
     protected override void OnKill()
     {
-        Debug.Log("playerKilled");
+        respawnUIManager.HandlePlayerDeath();
+        gameObject.SetActive(false);
     }
 
     private void CameraZoom()
