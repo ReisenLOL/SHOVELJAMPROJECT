@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 namespace Core.Extensions
 {
     public static partial class CursorHelper
     {
-        public static Vector2 MouseWorldPosition2D => Camera.main == null
-            ? Vector2.zero
-            : (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        public static Vector2 MouseWorldPosition2D => Camera.main == null ? Vector2.zero : (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         static Cursor cursor = new();
         public static CursorLockMode lockState
         {

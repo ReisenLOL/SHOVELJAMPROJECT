@@ -105,13 +105,21 @@ public class FluxStorable : Building
         }
     }
 
-    protected void OnDisable()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         if (connectedGrid)
         {
             connectedGrid.RemoveBuilding(this);
             PlacementHandler placementHandler = FindFirstObjectByType<PlacementHandler>();
             placementHandler.placedBuildings.Remove(this);
+            foreach (FluxStorable connectedPipe in connectedPipes)
+            {
+                if (connectedPipe.connectedPipes.Contains(this))
+                {
+                    connectedPipe.connectedPipes.Remove(this);
+                }
+            }
             foreach (Building building in placementHandler.placedBuildings)
             {
                 building.refreshBuildings = true;

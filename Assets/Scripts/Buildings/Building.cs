@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Bremsengine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,11 +16,13 @@ public class Building : MonoBehaviour
     public PlacementHandler.BuildingCategory buildingCategory;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public PlayerController player;
-    [HideInInspector] public float currentState;
-
+    [HideInInspector] public float currentState; 
+    private AudioSource audioSource;
+    public AudioClip destructionSound;
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damage)
@@ -30,8 +33,14 @@ public class Building : MonoBehaviour
         StartCoroutine(DamageAnimation());
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            GeneralManager.FunnyExplosion(transform.position, 0.5f);
+            Destroy(gameObject);
         }
+    }
+
+    protected virtual void OnDestroy()
+    {
+
     }
 
     private IEnumerator DamageAnimation()
