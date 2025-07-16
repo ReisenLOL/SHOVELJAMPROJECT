@@ -1185,11 +1185,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451077851}
   m_CullTransparentMesh: 1
---- !u!1 &463084444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058708580314273669, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-  m_PrefabInstance: {fileID: 6975231431684293700}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &479339584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,36 +1331,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
   m_PrefabInstance: {fileID: 6975231431684293700}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463084444}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2685b1087625a1037adb7842d4960f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &487477617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463084444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7dbec7700f965281a229106ca2d8a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 487477613}
-  buildingLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  worldPos: {x: 0, y: 0, z: 0}
-  cam: {fileID: 0}
-  infoPanel: {fileID: 1117403246}
-  fluxSliderUI: {fileID: 206435183}
-  fluxSlider: {fileID: 1682637878}
-  buildingNameText: {fileID: 1140207786}
-  buildingDescriptionText: {fileID: 1147236651}
-  fluxAmountText: {fileID: 661130472}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,33 +5718,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1486562221}
     - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: canFire
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: fireRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1272612960}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: destroyBeam
-      value: 
-      objectReference: {fileID: 3931981510978352541, guid: 049f331ea60858f7aad9b1bc85f966f1, type: 3}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: fireFluxCost
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: fluxMoveSpeed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
       propertyPath: fluxStoredBar
       value: 
@@ -5782,29 +5729,38 @@ PrefabInstance:
       propertyPath: fluxStoredText
       value: 
       objectReference: {fileID: 2105218853}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: projectileSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537803484888523692, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: projectileDamage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7058708580314273669, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8099753646645470449, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: infoPanel
+      value: 
+      objectReference: {fileID: 1117403246}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: fluxSlider
+      value: 
+      objectReference: {fileID: 1682637878}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: fluxSliderUI
+      value: 
+      objectReference: {fileID: 206435183}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: fluxAmountText
+      value: 
+      objectReference: {fileID: 661130472}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: buildingNameText
+      value: 
+      objectReference: {fileID: 1140207786}
+    - target: {fileID: 7660163326188817510, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
+      propertyPath: buildingDescriptionText
+      value: 
+      objectReference: {fileID: 1147236651}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7058708580314273669, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 487477617}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a1939e9b444991b0aff96863fca63ac, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -18,7 +18,7 @@ public class Building : MonoBehaviour
     [HideInInspector] public PlayerController player;
     [HideInInspector] public float currentState; 
     private AudioSource audioSource;
-    public AudioClip destructionSound;
+    public AudioClip buildSound;
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +38,10 @@ public class Building : MonoBehaviour
         }
     }
 
+    public virtual void OnBuilt()
+    {
+        audioSource.PlayOneShot(buildSound, 0.4f);
+    }
     protected virtual void OnDestroy()
     {
 

@@ -37,6 +37,7 @@ public class BuildingBlueprint : MonoBehaviour
                 {
                     building.refreshBuildings = true;
                 }
+                thisBuilding.OnBuilt();
                 Destroy(this);
             }
         } 

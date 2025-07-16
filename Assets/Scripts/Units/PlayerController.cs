@@ -24,9 +24,11 @@ public class PlayerController : Unit
     public float fireRate;
     public float fireFluxCost;
     public float currentFiringTime;
+    public AudioClip fireSound;
 
     [Header("[DESTROY BEAM PROJECTILE]")] 
     public DestroyBeam destroyBeam;
+    public AudioClip destroyBeamFire;
     
     [Header("[CACHE]")] 
     public Transform fluxStoredBar;
@@ -35,6 +37,7 @@ public class PlayerController : Unit
     public Camera gameCam;
     private RespawnUIManager respawnUIManager;
     public Transform healthBar;
+    public AudioSource audioSource;
     private void Start()
     {
         gameCam = Camera.main;
@@ -121,10 +124,12 @@ public class PlayerController : Unit
         if (canFire && Input.GetMouseButton(0) && currentFiringTime >= fireRate && fluxStored >= fireFluxCost)
         {
             CreateProjectile(projectile, projectileSpeed, projectileDamage, fireFluxCost);
+            audioSource.PlayOneShot(fireSound, 0.4f);
         }
         else if (canFire && Input.GetKeyDown(KeyCode.G))
         {
             CreateProjectile(destroyBeam, 12f, 0f, 0f);
+            audioSource.PlayOneShot(destroyBeamFire);
         }
     }
 
