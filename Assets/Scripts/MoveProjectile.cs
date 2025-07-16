@@ -2,17 +2,8 @@ using System;
 using Core.Extensions;
 using UnityEngine;
 
-public class MoveProjectile : MonoBehaviour
+public class MoveProjectile : Projectile
 {
-    public float speed;
-    public float damage;
-    public Rigidbody2D rb;
-    public bool isEnemyBullet;
-    public float bulletLifeTime;
-    private void Start()
-    {
-        Destroy(gameObject, bulletLifeTime);
-    }
 
     private void FixedUpdate()
     {
@@ -38,10 +29,5 @@ public class MoveProjectile : MonoBehaviour
             isPlayer.TakeDamage(damage);
             Destroy(gameObject);
         }
-    }
-
-    public void RotateToTarget(Vector3 targetPosition)
-    {
-        transform.Lookat2D(targetPosition);
     }
 }

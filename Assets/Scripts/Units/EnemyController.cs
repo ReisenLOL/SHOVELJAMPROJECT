@@ -13,7 +13,7 @@ public class EnemyController : Unit
     public float range;
     
     [Header("[PROJECTILE]")] 
-    public MoveProjectile projectile;
+    public Projectile projectile;
     public float projectileSpeed;
     public float projectileDamage;
     public float fireRate;
@@ -77,7 +77,7 @@ public class EnemyController : Unit
         currentFiringTime += Time.deltaTime;
         if (closestTarget && currentFiringTime >= fireRate)
         {
-            MoveProjectile newProjectile = Instantiate(projectile);
+            Projectile newProjectile = Instantiate(projectile);
             newProjectile.transform.position = transform.position;
             newProjectile.speed = projectileSpeed;
             newProjectile.damage = projectileDamage;

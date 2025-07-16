@@ -66,16 +66,6 @@ public class PlayerDrainStoreFlux : MonoBehaviour
                 player.canFire = true;
             }
         }
-        if (Input.GetMouseButton(1))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, buildingLayers);
-            if (hit)
-            {
-                hit.collider.gameObject.SetActive(false);
-                return;
-            }
-        }
-
         if (Input.GetKey(KeyCode.Tab))
         {
             RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, buildingLayers);

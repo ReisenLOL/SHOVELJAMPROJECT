@@ -18,12 +18,15 @@ public class PlayerController : Unit
 
     [Header("[PROJECTILE]")] 
     public bool canFire;
-    public MoveProjectile projectile;
+    public Projectile projectile;
     public float projectileSpeed;
     public float projectileDamage;
     public float fireRate;
     public float fireFluxCost;
     public float currentFiringTime;
+
+    [Header("[DESTROY BEAM PROJECTILE]")] 
+    public DestroyBeam destroyBeam;
     
     [Header("[CACHE]")] 
     public Transform fluxStoredBar;
@@ -31,6 +34,7 @@ public class PlayerController : Unit
     public CinemachineCamera cam;
     public Camera gameCam;
     private RespawnUIManager respawnUIManager;
+    public Transform healthBar;
     private void Start()
     {
         gameCam = Camera.main;
@@ -100,20 +104,45 @@ public class PlayerController : Unit
         }
     }
 
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        UpdateHealthBar();
+    }
+
+    private void OnEnable()
+    {
+        UpdateHealthBar();
+    }
+
     private void FireProjectile()
     {
         currentFiringTime += Time.deltaTime;
         if (canFire && Input.GetMouseButton(0) && currentFiringTime >= fireRate && fluxStored >= fireFluxCost)
         {
-            Vector3 worldPos = gameCam.ScreenToWorldPoint(Input.mousePosition);
-            worldPos.z = 0;
-            MoveProjectile newProjectile = Instantiate(projectile);
-            newProjectile.transform.position = transform.position;
-            newProjectile.speed = projectileSpeed;
-            newProjectile.damage = projectileDamage;
-            newProjectile.RotateToTarget(worldPos);
-            DrainFlux(fireFluxCost);
-            currentFiringTime = 0;
+            CreateProjectile(projectile, projectileSpeed, projectileDamage, fireFluxCost);
         }
+        else if (canFire && Input.GetKeyDown(KeyCode.G))
+        {
+            CreateProjectile(destroyBeam, 12f, 0f, 0f);
+        }
+    }
+
+    private void CreateProjectile(Projectile projectileToCreate, float speed, float damage, float cost)
+    {
+        Vector3 worldPos = gameCam.ScreenToWorldPoint(Input.mousePosition);
+        worldPos.z = 0;
+        Projectile newProjectile = Instantiate(projectileToCreate);
+        newProjectile.transform.position = transform.position;
+        newProjectile.speed = speed;
+        newProjectile.damage = damage;
+        newProjectile.RotateToTarget(worldPos);
+        DrainFlux(cost);
+        currentFiringTime = 0;
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.localScale = new Vector3(healthBar.localScale.x, health/maxHealth);
     }
 }

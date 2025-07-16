@@ -10,9 +10,10 @@ public class RespawnPoint : FluxStorable
     {
         if (canRespawn)
         {
-            connectedGrid.DrainFluxTotal(requiredFluxToRespawn);
             player.gameObject.SetActive(true);
-            player.transform.position = transform.position;   
+            player.transform.position = transform.position;  
+            player.health = player.maxHealth;
+            connectedGrid.DrainFluxTotal(requiredFluxToRespawn);
         }
     }
 

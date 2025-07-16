@@ -6,7 +6,6 @@ public class Pipe : FluxStorable
     protected override void Start()
     {
         base.Start();
-        FindPipes();
     }
 
     protected override void Update()
@@ -26,7 +25,11 @@ public class Pipe : FluxStorable
             if (detectedBuilding && detectedBuilding.TryGetComponent(out FluxStorable isFluxStorable) && !connectedPipes.Contains(isFluxStorable))
             {
                 connectedPipes.Add(isFluxStorable);
-                if (connectedGrid && !isFluxStorable.connectedGrid)
+                if (connectedGrid && isFluxStorable.connectedGrid)
+                {
+                    connectedGrid.MergeGrids(isFluxStorable.connectedGrid);
+                }
+                else if (connectedGrid && !isFluxStorable.connectedGrid)
                 {
                     isFluxStorable.connectedGrid = connectedGrid;
                     connectedGrid.AddBuilding(isFluxStorable);

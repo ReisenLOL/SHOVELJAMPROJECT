@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,11 @@ public class WaveManager : MonoBehaviour
     public Wave[] waveList;
     public int currentWaveNumber;
     public float timeBetweenEnemySpawns;
+    public float currentWaveTime;
+    public float timeBetweenWaves;
+    [Header("[CACHE]")] 
+    public TextMeshProUGUI waveNumberText;
+    public TextMeshProUGUI waveTimeText;
 
     public void UpdateEmptyGeysers()
     {
@@ -44,11 +50,25 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        currentWaveTime -= Time.deltaTime;
+        waveTimeText.text = "Next wave in: " + MathF.Round(currentWaveTime);
+        if (currentWaveTime <= 0)
+        {
+            currentWaveTime = timeBetweenWaves;
+            StartCoroutine(SpawnWave(waveList[currentWaveNumber]));
+            waveNumberText.text = "Wave:" + currentWaveNumber;
+            currentWaveNumber++;
+        }
+    }
+
     [ContextMenu("Force Spawn Next Wave")]
     public void DebugSpawnNextWave()
     {
-        //currentWaveNumber++;
-        StartCoroutine(SpawnWave(waveList[0]));
+        currentWaveNumber++;
+        StartCoroutine(SpawnWave(waveList[currentWaveNumber]));
+        currentWaveTime = timeBetweenWaves;
     }
     private IEnumerator SpawnWave(Wave wave)
     {

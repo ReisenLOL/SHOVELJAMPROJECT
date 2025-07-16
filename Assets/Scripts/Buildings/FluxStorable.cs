@@ -78,7 +78,11 @@ public class FluxStorable : Building
             if (detectedBuilding && detectedBuilding.TryGetComponent(out Pipe isPipe) && !connectedPipes.Contains(isPipe))
             {
                 connectedPipes.Add(isPipe);
-                if (connectedGrid && !isPipe.connectedGrid)
+                if (connectedGrid && isPipe.connectedGrid)
+                {
+                    connectedGrid.MergeGrids(isPipe.connectedGrid);
+                }
+                else if (connectedGrid && !isPipe.connectedGrid)
                 {
                     isPipe.connectedGrid = connectedGrid;
                     connectedGrid.AddBuilding(isPipe);

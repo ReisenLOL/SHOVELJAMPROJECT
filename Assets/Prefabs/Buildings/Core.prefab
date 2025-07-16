@@ -225,15 +225,19 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   fluxCost: 0
-  player: {fileID: 0}
   buildingID: Core
+  description: 
   refreshBuildings: 0
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 0}
+  currentState: 0
   fluxMaxCapacity: 200
   currentFlux: 200
   maxCapacity: 0
   hasInterface: 1
   connectedGrid: {fileID: 0}
-  detectPipes: []
+  detectPipes:
+  - {fileID: 8982503448010092056}
   connectedPipes: []
   fluxToProduce: 5
   fluxProductionRate: 1
