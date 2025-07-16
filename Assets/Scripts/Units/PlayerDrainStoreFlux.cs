@@ -36,7 +36,7 @@ public class PlayerDrainStoreFlux : MonoBehaviour
                 isBlueprint.BlueprintStoreFlux();
                 player.canFire = false;
             }
-            if (hit && hit.collider.TryGetComponent(out FluxStorable isFluxStorable))
+            if (hit && hit.collider.TryGetComponent(out FluxStorable isFluxStorable) && isFluxStorable.enabled)
             {
                 isFluxStorable.PlayerStoreFlux();
                 player.canFire = false;

@@ -56,13 +56,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3371790825419812237}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1112895280822288807}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &5734545098696528856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -128,11 +128,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1112895280822288807}
   - component: {fileID: 1182557165152767538}
-  - component: {fileID: -5274178893779116596}
+  - component: {fileID: 3558133283945697520}
+  - component: {fileID: 5011146188962352117}
   - component: {fileID: 6131951814561416600}
   - component: {fileID: 1772452584482741451}
   m_Layer: 6
-  m_Name: Core
+  m_Name: FluxCondenser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +200,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7350168939736171697, guid: 1cba642687904df15a5bf7744f6ee60d, type: 3}
+  m_Sprite: {fileID: -5933715298724706184, guid: a51c0973f48ee4d0f8972516d0f52771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5274178893779116596
+--- !u!114 &3558133283945697520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,30 +220,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 8628134785909848455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a62db0d0db1484714af707db054ffe92, type: 3}
+  m_Script: {fileID: 11500000, guid: 4873fd40e3fc9d4b8bbb19524cfc67cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 0
-  buildingID: Core
-  description: 
+  fluxCost: 50
+  buildingID: Flux Condenser
+  description: Passively generates a low amount of Flux from the environment.
   refreshBuildings: 0
+  buildingCategory: 1
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
   fluxMaxCapacity: 200
-  currentFlux: 200
+  currentFlux: 0
   maxCapacity: 0
-  hasInterface: 1
+  hasInterface: 0
   connectedGrid: {fileID: 0}
   detectPipes:
   - {fileID: 8982503448010092056}
   connectedPipes: []
-  fluxToProduce: 5
+  fluxToProduce: 2
   fluxProductionRate: 1
   canProduce: 0
   resourceDetection: {fileID: 0}
+--- !u!114 &5011146188962352117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628134785909848455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1883e0300af31e479fc2aa180fb3a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFlux: 0
+  player: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  currentState: 0
 --- !u!61 &6131951814561416600
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -281,13 +299,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 6, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &1772452584482741451
 Rigidbody2D:

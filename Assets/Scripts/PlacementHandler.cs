@@ -8,50 +8,86 @@ using UnityEngine.UI;
 public class PlacementHandler : MonoBehaviour
 {
     public Building[] allBuildings;
-    [Header("[CACHE]")] 
-    public List<Building> placedBuildings = new();
-    public Transform buildingUIFrame;
-    public Button buttonTemplate;
+    public enum BuildingCategory {Pipe, Flux_Generation, Storage, Turret, Defense}
+
+    [Header("[PLACEMENT CACHE]")]
+    public PlayerController player;
+    private Vector3 worldPos;
+    private Camera cam;
+    private Vector3 buildingGridEvenCell;
+    private Vector3 buildingGridCenterCell;
     public Building selectedBuilding;
     public GameObject placeholderBuilding;
     private Grid placementGrid;
     public Transform buildingFolder;
     private int rotationAmount;
     private float selectionSize;
-    public bool createPlaceholder;
     public bool isBuilding;
-    public PlayerController player;
-    private Vector3 worldPos;
-    private Camera cam;
-    private Vector3 buildingGridEvenCell;
-    private Vector3 buildingGridCenterCell;
+    [Header("[UI CACHE]")]
+    private BuildingCategory currentCategoryOpen;
+    public List<Building> placedBuildings = new();
+    public Transform buildingUIFrame;
+    public Button buttonTemplate;
+    public Button categoryButtonTemplate;
+    public Transform categoryUIFrame;
 
     private void Start()
     {
         placementGrid = FindAnyObjectByType<Grid>();
         player = FindFirstObjectByType<PlayerController>();
         cam = Camera.main;
-        foreach (Building building in allBuildings)
+        foreach (BuildingCategory category in Enum.GetValues(typeof(BuildingCategory)))
         {
-            Button newButton = Instantiate(buttonTemplate, buildingUIFrame);
+            Button newButton = Instantiate(categoryButtonTemplate, categoryUIFrame);
             newButton.gameObject.SetActive(true);
-            newButton.onClick.AddListener(() => SelectBuilding(building));
-            newButton.GetComponentInChildren<TextMeshProUGUI>().text = building.fluxCost.ToString();
-            newButton.transform.Find("BuildingSprite").GetComponent<Image>().sprite = building.GetComponent<SpriteRenderer>().sprite;
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = category.ToString().Replace("_", " ");
+            newButton.onClick.AddListener(() => SelectCategory(category));
+            
         }
-
         placedBuildings = FindObjectsByType<Building>(FindObjectsSortMode.None).ToList();
         foreach (Building building in placedBuildings)
         {
             building.player = player;
         }
     }
-
     private void Update()
     {
         PlaceBuildingBlueprint();
     }
 
+    public void SelectCategory(BuildingCategory categorySelected)
+    {
+        if (!buildingUIFrame.gameObject.activeSelf || currentCategoryOpen != categorySelected)
+        {
+            foreach (Transform buildingButtons in buildingUIFrame)
+            {
+                Destroy(buildingButtons.gameObject);
+            }
+            buildingUIFrame.gameObject.SetActive(true);
+            currentCategoryOpen = categorySelected;
+            foreach (Building building in allBuildings)
+            {
+                if (building.buildingCategory == categorySelected)
+                {
+                    BuildBuildingList(building);
+                }
+            }
+        }
+        else
+        {
+            buildingUIFrame.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void BuildBuildingList(Building building)
+    {
+        Button newButton = Instantiate(buttonTemplate, buildingUIFrame);
+        newButton.gameObject.SetActive(true);
+        newButton.onClick.AddListener(() => SelectBuilding(building));
+        newButton.GetComponentInChildren<TextMeshProUGUI>().text = building.fluxCost.ToString();
+        newButton.transform.Find("BuildingSprite").GetComponent<Image>().sprite = building.GetComponent<SpriteRenderer>().sprite;
+    }
     private void PlaceBuildingBlueprint()
     {
         if (isBuilding)
@@ -129,7 +165,6 @@ public class PlacementHandler : MonoBehaviour
         {
             Destroy(script);
         }
-        createPlaceholder = false;
     }
 
     private void StopBuilding()

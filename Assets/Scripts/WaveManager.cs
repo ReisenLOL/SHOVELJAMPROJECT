@@ -50,6 +50,18 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void UpdateSpecificGeyserStatus(Geyser geyserUpdated)
+    {
+        if (emptyGeysers.Contains(geyserUpdated))
+        {
+            emptyGeysers.Remove(geyserUpdated);
+        }
+        else
+        {
+            Debug.LogWarning("WHAT THE FUCK IS THAT");
+        }
+    }
+
     private void Update()
     {
         currentWaveTime -= Time.deltaTime;

@@ -20,6 +20,7 @@ public class FluxPump : FluxStorable
                 if (detectGeyser.TryGetComponent(out Geyser geyser))
                 {
                     geyser.hasPump = true;
+                    FindFirstObjectByType<WaveManager>().UpdateSpecificGeyserStatus(geyser);
                 }
             }
         }
@@ -36,6 +37,13 @@ public class FluxPump : FluxStorable
 
     protected virtual void ProduceFlux()
     {
-        StoreFlux(fluxToProduce * fluxProductionRate * Time.deltaTime);
+        if (!maxCapacity)
+        {
+            StoreFlux(fluxToProduce * fluxProductionRate * Time.deltaTime);
+        }
+        else if (connectedGrid)
+        {
+            connectedGrid.StoreFluxTotal(fluxToProduce * fluxProductionRate * Time.deltaTime);
+        }
     }
 }

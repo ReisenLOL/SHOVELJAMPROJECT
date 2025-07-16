@@ -26,17 +26,22 @@ public class MapGeneration : MonoBehaviour
     private bool[,] visited; // Keeps track of visited tiles
     public bool randomSeed = true;
     public NavMeshSurface navMeshSurface;
+    public WaveManager waveManager;
 
     void Start()
     {
         GenerateMap();
-        FindFirstObjectByType<WaveManager>().UpdateEmptyGeysers();
     }
 
     public void GenerateMap()
     {
         fluxMap = new bool[width, height];
         visited = new bool[width, height];
+        Geyser[] allGeysers = FindObjectsByType<Geyser>(FindObjectsSortMode.None);
+        foreach (Geyser geyserObject in allGeysers)
+        {
+            Destroy(geyserObject.gameObject);
+        }
         int newNoise = 0;
         if (randomSeed)
         {
@@ -106,6 +111,7 @@ public class MapGeneration : MonoBehaviour
             }
         }
         navMeshSurface.BuildNavMesh();
+        waveManager.UpdateEmptyGeysers();
     }
     void FloodFillOrePatch(int startX, int startY, TileBase oreType)
     {

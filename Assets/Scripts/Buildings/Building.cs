@@ -12,6 +12,7 @@ public class Building : MonoBehaviour
     public string description;
     public bool refreshBuildings;
     private float damageColorChangeSpeed = 4f;
+    public PlacementHandler.BuildingCategory buildingCategory;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public PlayerController player;
     [HideInInspector] public float currentState;
