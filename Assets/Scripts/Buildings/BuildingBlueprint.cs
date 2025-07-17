@@ -22,9 +22,9 @@ public class BuildingBlueprint : MonoBehaviour
 
     public void BlueprintStoreFlux()
     {
-        if (player.fluxStored > 0)
+        float amountToChange = player.fluxMoveSpeed * Time.deltaTime;
+        if (player.fluxStored > amountToChange)
         {
-            float amountToChange = player.fluxMoveSpeed * Time.deltaTime;
             currentState = currentFlux / requiredFlux;
             player.DrainFlux(amountToChange);
             currentFlux += amountToChange;

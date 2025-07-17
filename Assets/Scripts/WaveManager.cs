@@ -80,6 +80,7 @@ public class WaveManager : MonoBehaviour
     {
         currentWaveNumber++;
         StartCoroutine(SpawnWave(waveList[currentWaveNumber]));
+        waveNumberText.text = "Wave:" + currentWaveNumber;
         currentWaveTime = timeBetweenWaves;
     }
     private IEnumerator SpawnWave(Wave wave)

@@ -41,6 +41,10 @@ public class RespawnUIManager : MonoBehaviour
         spawnButton.gameObject.SetActive(false);
         camOriginPosition = cam.transform.position;
         respawnPoints = FindObjectsByType<RespawnPoint>(FindObjectsSortMode.None);
+        if (respawnPoints.Length == 0)
+        {
+            FindFirstObjectByType<GameManager>().GameOver(false);
+        }
         foreach (RespawnPoint respawnPoint in respawnPoints)
         {
             respawnPoint.CheckSpawnable();

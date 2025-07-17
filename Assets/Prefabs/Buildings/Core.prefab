@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62db0d0db1484714af707db054ffe92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 10000
+  maxHealth: 10000
   fluxCost: 0
   buildingID: Core
   description: 
@@ -234,6 +234,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 0
   fluxMaxCapacity: 200
   currentFlux: 200
   maxCapacity: 0

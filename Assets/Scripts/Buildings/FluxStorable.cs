@@ -74,7 +74,7 @@ public class FluxStorable : Building
     {
         foreach (Transform detectPipe in detectPipes)
         {
-            Collider2D detectedBuilding = Physics2D.OverlapCircle(detectPipe.position, 0.1f);
+            Collider2D detectedBuilding = Physics2D.OverlapCircle(detectPipe.position, 0.1f, LayerMask.GetMask("Building"));
             if (detectedBuilding && detectedBuilding.TryGetComponent(out Pipe isPipe) && !connectedPipes.Contains(isPipe))
             {
                 connectedPipes.Add(isPipe);

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6782081916547653967}
   - component: {fileID: 8245872066682050031}
   - component: {fileID: 6362515102140430822}
-  - component: {fileID: -4940892785246534283}
+  - component: {fileID: -281676004867984813}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: FastEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2038449967503034895, guid: 7b6b5d4b1cf98f7d7bd5e552faf7866f, type: 3}
+  m_Sprite: {fileID: 5270242345031279130, guid: b2a2484ae6c89e0c680260bd1e129011, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.40625, y: 0.8525}
+    oldSize: {x: 0.4642857, y: 0.8814286}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -179,10 +179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  speed: 4
+  speed: 10
   range: 4
   projectile: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileDamage: 10
   fireRate: 0.8
   currentFiringTime: 0
@@ -211,7 +211,7 @@ NavMeshAgent:
   m_BaseOffset: 0.42625
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!82 &-4940892785246534283
+--- !u!82 &-281676004867984813
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

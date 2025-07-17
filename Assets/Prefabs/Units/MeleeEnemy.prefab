@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8099753646645470449}
   - component: {fileID: 6286258451469196671}
   - component: {fileID: 6782081916547653967}
-  - component: {fileID: 8245872066682050031}
+  - component: {fileID: 4701825549888971424}
   - component: {fileID: 6362515102140430822}
-  - component: {fileID: -4940892785246534283}
+  - component: {fileID: -3091530088283131754}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2038449967503034895, guid: 7b6b5d4b1cf98f7d7bd5e552faf7866f, type: 3}
+  m_Sprite: {fileID: 121048882190692432, guid: 901a4716885c0a41f96750d741f44742, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.40625, y: 0.8525}
+    oldSize: {x: 0.5271429, y: 0.9742857}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -165,7 +165,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8245872066682050031
+--- !u!114 &4701825549888971424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,19 +174,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7058708580314273669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24cf61869e5d9ca9ca55a29c76978f89, type: 3}
+  m_Script: {fileID: 11500000, guid: cbef3bff5c81f6730b5d0ad1704010e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
   speed: 4
-  range: 4
-  projectile: {fileID: 3310291963002731088, guid: e97d587b24bc1aadfb6a5f37f705e381, type: 3}
-  projectileSpeed: 10
-  projectileDamage: 10
-  fireRate: 0.8
+  range: 0
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  projectileDamage: 40
+  fireRate: 4
   currentFiringTime: 0
-  fireSound: {fileID: 8300000, guid: 164a596b10c459e48a893915675ed901, type: 3}
+  fireSound: {fileID: 8300000, guid: 8b4c4b765fcca2f42ae8bf4257f10c1d, type: 3}
   volume: 0.4
   targetList: []
 --- !u!195 &6362515102140430822
@@ -211,7 +211,7 @@ NavMeshAgent:
   m_BaseOffset: 0.42625
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!82 &-4940892785246534283
+--- !u!82 &-3091530088283131754
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

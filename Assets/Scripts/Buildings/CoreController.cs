@@ -7,4 +7,8 @@ public class CoreController : FluxPump
         base.Start();
         canProduce = true;
     }
+    protected override void OnDestroy()
+    {
+        FindFirstObjectByType<GameManager>().GameOver(true);
+    }
 }

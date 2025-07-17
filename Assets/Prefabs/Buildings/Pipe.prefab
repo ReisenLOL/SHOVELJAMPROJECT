@@ -179,6 +179,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 1
   fluxMaxCapacity: 0
   currentFlux: 0
   maxCapacity: 0

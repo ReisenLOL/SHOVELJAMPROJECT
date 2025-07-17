@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : Unit
 {
@@ -121,12 +122,13 @@ public class PlayerController : Unit
     private void FireProjectile()
     {
         currentFiringTime += Time.deltaTime;
-        if (canFire && Input.GetMouseButton(0) && currentFiringTime >= fireRate && fluxStored >= fireFluxCost)
+        if (canFire && Input.GetMouseButton(0) && currentFiringTime >= fireRate && fluxStored >= fireFluxCost && !EventSystem.current.IsPointerOverGameObject())
         {
             CreateProjectile(projectile, projectileSpeed, projectileDamage, fireFluxCost);
-            audioSource.PlayOneShot(fireSound, 0.4f);
+            currentFiringTime = 0;
+            audioSource.PlayOneShot(fireSound, 0.0f);
         }
-        else if (canFire && Input.GetKeyDown(KeyCode.G))
+        else if (Input.GetKeyDown(KeyCode.G))
         {
             CreateProjectile(destroyBeam, 12f, 0f, 0f);
             audioSource.PlayOneShot(destroyBeamFire);
@@ -143,7 +145,6 @@ public class PlayerController : Unit
         newProjectile.damage = damage;
         newProjectile.RotateToTarget(worldPos);
         DrainFlux(cost);
-        currentFiringTime = 0;
     }
 
     private void UpdateHealthBar()

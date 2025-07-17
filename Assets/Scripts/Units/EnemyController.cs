@@ -7,9 +7,10 @@ public class EnemyController : Unit
 {
     [Header("STATS")]
     public int speed;
-    private NavMeshAgent agent;
-    private PlayerController player;
-    private CoreController core;
+    protected NavMeshAgent agent;
+    protected PlayerController player;
+    protected CoreController core;
+    protected AudioSource audioSource;
     public float range;
     
     [Header("[PROJECTILE]")] 
@@ -18,30 +19,32 @@ public class EnemyController : Unit
     public float projectileDamage;
     public float fireRate;
     public float currentFiringTime;
-
+    public AudioClip fireSound;
+    public float volume;
 
     [Header("CACHE")] 
     public List<Collider2D> targetList = new();
     private GameObject closestTarget;
-    void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        audioSource = GetComponent<AudioSource>();
         player = FindFirstObjectByType<PlayerController>();
         core = FindFirstObjectByType<CoreController>();
         CreateTargetting();
     }
-    void Update()
+    protected virtual void Update()
     {
         Movement();
         GetClosestTarget();
         FireProjectile();
     }
 
-    private void GetClosestTarget()
+    protected void GetClosestTarget()
     {
         float distanceToClosestTarget = 1000000f;
         foreach (Collider2D target in targetList.ToList())
@@ -59,7 +62,7 @@ public class EnemyController : Unit
             }
         }
     }
-    private void Movement()
+    protected void Movement()
     {
         float distanceToPlayer = Vector3.SqrMagnitude(player.transform.position - transform.position);
         float distanceToCore = Vector3.SqrMagnitude(core.transform.position - transform.position);
@@ -83,6 +86,7 @@ public class EnemyController : Unit
             newProjectile.damage = projectileDamage;
             newProjectile.RotateToTarget(closestTarget.transform.position);
             newProjectile.isEnemyBullet = true;
+            audioSource.PlayOneShot(fireSound, volume);
             currentFiringTime = 0;
         }
     }
@@ -99,5 +103,9 @@ public class EnemyController : Unit
         newCC2D.isTrigger = true;
         EnemyDetectTargets newEDT = newTargetDetection.AddComponent<EnemyDetectTargets>();
         newEDT.thisEnemy = this;
+    }
+    protected override void OnKill()
+    {
+        Destroy(gameObject);
     }
 }

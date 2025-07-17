@@ -19,6 +19,7 @@ public class Building : MonoBehaviour
     [HideInInspector] public float currentState; 
     private AudioSource audioSource;
     public AudioClip buildSound;
+    public bool draggable;
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,7 +34,7 @@ public class Building : MonoBehaviour
         StartCoroutine(DamageAnimation());
         if (health <= 0)
         {
-            GeneralManager.FunnyExplosion(transform.position, 0.5f);
+            GeneralManager.FunnyExplosion(transform.position, GetComponent<BoxCollider2D>().size.x/2);
             Destroy(gameObject);
         }
     }

@@ -51,7 +51,7 @@ public class TurretController : FluxStorable
     private void FireProjectile()
     {
         currentFiringTime += Time.deltaTime;
-        if (closestTarget && currentFiringTime >= fireRate && (currentFlux >= fluxFiringCost || connectedGrid.currentFluxStoredTotal >= fluxFiringCost))
+        if (closestTarget && currentFiringTime >= fireRate && connectedGrid && (currentFlux >= fluxFiringCost || connectedGrid.currentFluxStoredTotal >= fluxFiringCost))
         {
             MoveProjectile newProjectile = Instantiate(projectile);
             newProjectile.transform.position = transform.position;

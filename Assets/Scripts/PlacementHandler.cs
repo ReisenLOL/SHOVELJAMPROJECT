@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,13 @@ public class PlacementHandler : MonoBehaviour
     public Transform buildingFolder;
     private int rotationAmount;
     private float selectionSize;
+    public BoxCollider2D selectionBox;
     public bool isBuilding;
+    private Vector3Int pipeStartCell;
+    private Vector3 startingPipeWorldPos;
+    private bool isDraggingPipe;
+    public GameObject showPlaceholderLine;
+    private GameObject currentPlaceholderLine;
     [Header("[UI CACHE]")]
     private BuildingCategory currentCategoryOpen;
     public List<Building> placedBuildings = new();
@@ -92,6 +99,7 @@ public class PlacementHandler : MonoBehaviour
     {
         if (isBuilding)
         {
+            player.canFire = false;
             worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
             worldPos.z = 0;
             buildingGridEvenCell = placementGrid.WorldToCell(worldPos);
@@ -115,9 +123,39 @@ public class PlacementHandler : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                HandlePlacement();
+                if (selectedBuilding.draggable)
+                {
+                    pipeStartCell = placementGrid.WorldToCell(worldPos);
+                    currentPlaceholderLine = Instantiate(showPlaceholderLine);
+                    currentPlaceholderLine.transform.position = worldPos;
+                    startingPipeWorldPos = worldPos;
+                    isDraggingPipe = true;
+                }
+                else
+                {
+                    HandlePlacement();   
+                }
             }
-
+            else if (Input.GetMouseButton(0) && isDraggingPipe)
+            {
+                currentPlaceholderLine.transform.Lookat2D(worldPos);
+                currentPlaceholderLine.transform.position = (placementGrid.GetCellCenterWorld(pipeStartCell) + (worldPos - pipeStartCell) / 2) - new Vector3(0,0.25f,0);
+                currentPlaceholderLine.transform.localScale = new Vector3(Vector3.Distance(placementGrid.GetCellCenterWorld(pipeStartCell), worldPos), 1, 1);
+            }
+            else if (Input.GetMouseButtonUp(0) && isDraggingPipe)
+            {
+                isDraggingPipe = false;
+                Vector3Int endCell = placementGrid.WorldToCell(worldPos);
+                if (endCell == pipeStartCell)
+                {
+                    HandlePlacement();
+                    Destroy(currentPlaceholderLine);
+                    return;
+                }
+                PlacePipeLine(pipeStartCell, endCell);
+                Destroy(currentPlaceholderLine);
+                StopBuilding();
+            }
             if (Input.GetMouseButtonDown(1))
             {
                 StopBuilding();
@@ -128,7 +166,7 @@ public class PlacementHandler : MonoBehaviour
     private void HandlePlacement()
     {
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, LayerMask.GetMask("Building"));
-        if (hit || Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), selectedBuilding.GetComponent<BoxCollider2D>().size/2, 0, LayerMask.GetMask("Building")))
+        if (hit || Physics2D.OverlapBox(placementGrid.GetCellCenterWorld(placementGrid.WorldToCell(worldPos)), selectionBox.size/2, 0, LayerMask.GetMask("Building")))
         {
             return;
         }
@@ -151,7 +189,8 @@ public class PlacementHandler : MonoBehaviour
         if (!isBuilding)
         {
             selectedBuilding = building;
-            selectionSize = selectedBuilding.GetComponent<BoxCollider2D>().size.x;
+            selectionBox = selectedBuilding.GetComponent<BoxCollider2D>();
+            selectionSize = selectionBox.size.x;
             CreatePlaceholderBuilding();
             isBuilding = true;   
         }
@@ -166,10 +205,41 @@ public class PlacementHandler : MonoBehaviour
             Destroy(script);
         }
     }
+    private void PlacePipeLine(Vector3Int start, Vector3Int end)
+    {
+        Vector3Int current = start;
 
+        while (current.x != end.x)
+        {
+            current.x += Math.Sign(end.x - current.x);
+            TryPlacePipeAt(current);
+        }
+
+        while (current.y != end.y)
+        {
+            current.y += Math.Sign(end.y - current.y);
+            TryPlacePipeAt(current);
+        }
+    }
+
+    private void TryPlacePipeAt(Vector3Int cell)
+    {
+        Vector3 pos = placementGrid.GetCellCenterWorld(cell);
+        Collider2D hit = Physics2D.OverlapBox(pos, selectionBox.size / 2, 0, LayerMask.GetMask("Building"));
+        if (hit != null)
+        {
+            return;
+        }
+        Building pipe = Instantiate(selectedBuilding, buildingFolder);
+        pipe.transform.rotation = Quaternion.Euler(0,0,rotationAmount);
+        pipe.transform.position = pos;
+        pipe.player = player;
+        pipe.GetComponent<SpriteRenderer>().color = Color.black;
+    }
     private void StopBuilding()
     {
         selectedBuilding = null;
+        player.canFire = true;
         Destroy(placeholderBuilding);
         isBuilding = false;
     }
