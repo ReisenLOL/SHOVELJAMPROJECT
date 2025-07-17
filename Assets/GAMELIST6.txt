@@ -2,6 +2,7 @@ wow. i haven't talked in a bit.
 okay.
 so
 literally every system is done. i think. i'm not sure.
+i'm basically just stalling to get content done by adding stuff like a main menu and a pause menu lol
 lets see...
 + placement
 + unit ai
@@ -11,7 +12,7 @@ lets see...
 
 - actual sprites. this is drawing and you're LAZY sylvia.
 - more buildings
-- more enemies
+x more enemies (mostly done?)
 - wave design
 - balancing
-- make placement of pipes better
+x make placement of pipes better (placeholder funny idk how to fix lol)

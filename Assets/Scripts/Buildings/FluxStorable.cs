@@ -54,18 +54,18 @@ public class FluxStorable : Building
     }
     public void PlayerStoreFlux()
     {
-        if (hasInterface)
+        float change = player.fluxMoveSpeed * Time.deltaTime;
+        if (hasInterface && player.fluxStored > change)
         {
-            float change = player.fluxMoveSpeed * Time.deltaTime;
             player.DrainFlux(change);
             StoreFlux(change);   
         }
     }
     public void PlayerDrainFlux()
     {
-        if (hasInterface)
+        float change = player.fluxMoveSpeed * Time.deltaTime;
+        if (hasInterface && (currentFlux > change || connectedGrid && connectedGrid.currentFluxStoredTotal > change))
         {
-            float change = player.fluxMoveSpeed * Time.deltaTime;
             player.StoreFlux(change);
             DrainFlux(change);   
         }

@@ -139,7 +139,7 @@ public class PlacementHandler : MonoBehaviour
             else if (Input.GetMouseButton(0) && isDraggingPipe)
             {
                 currentPlaceholderLine.transform.Lookat2D(worldPos);
-                currentPlaceholderLine.transform.position = (placementGrid.GetCellCenterWorld(pipeStartCell) + (worldPos - pipeStartCell) / 2) - new Vector3(0,0.25f,0);
+                currentPlaceholderLine.transform.position = placementGrid.GetCellCenterWorld(pipeStartCell) + (worldPos - pipeStartCell) / 2;
                 currentPlaceholderLine.transform.localScale = new Vector3(Vector3.Distance(placementGrid.GetCellCenterWorld(pipeStartCell), worldPos), 1, 1);
             }
             else if (Input.GetMouseButtonUp(0) && isDraggingPipe)

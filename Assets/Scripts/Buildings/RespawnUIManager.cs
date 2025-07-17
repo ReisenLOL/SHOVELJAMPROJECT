@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,11 +46,15 @@ public class RespawnUIManager : MonoBehaviour
         {
             FindFirstObjectByType<GameManager>().GameOver(false);
         }
+
+        int i = 0;
         foreach (RespawnPoint respawnPoint in respawnPoints)
         {
+            i++;
             respawnPoint.CheckSpawnable();
             Button newRespawnButton = Instantiate(templateButton, respawnListUI);
             newRespawnButton.gameObject.SetActive(true);
+            newRespawnButton.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
             newRespawnButton.onClick.AddListener(() => SelectSpawnPoint(respawnPoint));
             if (respawnPoint.canRespawn)
             {
