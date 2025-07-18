@@ -14,11 +14,6 @@ public class FluxStorable : Building
 
     protected virtual void Update()
     {
-        if (refreshBuildings && connectedPipes.Count != detectPipes.Length)
-        {
-            FindPipes();
-            refreshBuildings = false; 
-        }
     }
     public void StoreFlux(float flux)
     {
@@ -34,6 +29,14 @@ public class FluxStorable : Building
                 maxCapacity = true;
                 currentFlux = fluxMaxCapacity;
             }   
+        }
+    }
+
+    public override void OnRefresh()
+    {
+        if (connectedPipes.Count != detectPipes.Length)
+        {
+            FindPipes();
         }
     }
 
@@ -122,7 +125,7 @@ public class FluxStorable : Building
             }
             foreach (Building building in placementHandler.placedBuildings)
             {
-                building.refreshBuildings = true;
+                building.OnRefresh();
             }
         }
     }

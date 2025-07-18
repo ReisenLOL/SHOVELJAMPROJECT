@@ -12,6 +12,7 @@ lets see...
 
 - actual sprites. this is drawing and you're LAZY sylvia.
 - more buildings
+    = ideas: repulsion field that knocks back enemies, fabricator and distributor, literal mine, smaller turret
 x more enemies (mostly done?)
 - wave design
 - balancing

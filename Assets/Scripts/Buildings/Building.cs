@@ -11,7 +11,6 @@ public class Building : MonoBehaviour
     public float fluxCost;
     public string buildingID;
     public string description;
-    public bool refreshBuildings;
     private float damageColorChangeSpeed = 4f;
     public PlacementHandler.BuildingCategory buildingCategory;
     [HideInInspector] public SpriteRenderer spriteRenderer;
@@ -46,6 +45,11 @@ public class Building : MonoBehaviour
     protected virtual void OnDestroy()
     {
 
+    }
+
+    public virtual void OnRefresh()
+    {
+        
     }
 
     private IEnumerator DamageAnimation()

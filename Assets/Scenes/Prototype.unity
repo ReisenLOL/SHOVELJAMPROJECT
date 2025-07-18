@@ -3001,6 +3001,9 @@ MonoBehaviour:
   - {fileID: 3558133283945697520, guid: 75194cbd3e25b18b1b8a32cf01a597ff, type: 3}
   - {fileID: 6542365482175584890, guid: 704625e914f64d032a47d461527f32f7, type: 3}
   - {fileID: 6542365482175584890, guid: dc6db0e6fb6690dbdb3ef4d9760a72a5, type: 3}
+  - {fileID: 8156432763462354373, guid: 5288c42007337b2218338b0d2744c53b, type: 3}
+  - {fileID: 2778177135423272274, guid: c230f4f79f0cc9bdaa7f9ebe3f755c9c, type: 3}
+  - {fileID: -4963148075233540410, guid: c0ca92db748772c7799ec28541d6c0d6, type: 3}
   player: {fileID: 0}
   selectedBuilding: {fileID: 0}
   placeholderBuilding: {fileID: 0}
@@ -3008,6 +3011,7 @@ MonoBehaviour:
   selectionBox: {fileID: 0}
   isBuilding: 0
   showPlaceholderLine: {fileID: 8628134785909848455, guid: 1d751d655b9dbe1239a8cc7119b80a18, type: 3}
+  placedFabricators: []
   placedBuildings: []
   buildingUIFrame: {fileID: 685388641}
   buttonTemplate: {fileID: 303258016}

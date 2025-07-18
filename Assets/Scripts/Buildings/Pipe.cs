@@ -10,10 +10,12 @@ public class Pipe : FluxStorable
 
     protected override void Update()
     {
-        if (refreshBuildings && connectedPipes.Count != detectPipes.Length)
+    }
+    public override void OnRefresh()
+    {
+        if (connectedPipes.Count != detectPipes.Length)
         {
             FindPipes();
-            refreshBuildings = false;
         }
     }
 

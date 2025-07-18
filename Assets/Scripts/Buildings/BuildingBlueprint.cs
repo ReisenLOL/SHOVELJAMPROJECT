@@ -25,24 +25,27 @@ public class BuildingBlueprint : MonoBehaviour
         float amountToChange = player.fluxMoveSpeed * Time.deltaTime;
         if (player.fluxStored > amountToChange)
         {
-            currentState = currentFlux / requiredFlux;
             player.DrainFlux(amountToChange);
             currentFlux += amountToChange;
+            currentState = currentFlux / requiredFlux;
             spriteRenderer.color = Color.Lerp(Color.black, Color.white, currentState);
             if (currentFlux >= requiredFlux)
-            {
-                thisBuilding.enabled = true;
-                placementHandler.placedBuildings.Add(thisBuilding);
-                foreach (Building building in placementHandler.placedBuildings)
-                {
-                    building.refreshBuildings = true;
-                }
-                thisBuilding.OnBuilt();
-                Destroy(this);
+            { 
+                OnBuilt();
             }
         } 
     }
 
+    public void FabricatorStoreFlux(float flux)
+    {
+        currentFlux += flux;
+        currentState = currentFlux / requiredFlux;
+        spriteRenderer.color = Color.Lerp(Color.black, Color.white, currentState);
+        if (currentFlux >= requiredFlux)
+        { 
+            OnBuilt();
+        }
+    }
     public void BlueprintDrainFlux()
     {
         if (currentFlux > 0)
@@ -57,5 +60,17 @@ public class BuildingBlueprint : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void OnBuilt()
+    {
+        thisBuilding.enabled = true;
+        placementHandler.placedBuildings.Add(thisBuilding);
+        foreach (Building building in placementHandler.placedBuildings)
+        {
+            building.OnRefresh();
+        }
+        thisBuilding.OnBuilt();
+        Destroy(this);
     }
 }

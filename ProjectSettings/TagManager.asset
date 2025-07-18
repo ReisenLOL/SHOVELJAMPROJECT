@@ -19,7 +19,7 @@ TagManager:
   - EnemyTargetDetection
   - TurretTargetDetection
   - DestroyBeam
-  - 
+  - DistributorRangeDetection
   - 
   - 
   - 

@@ -14,6 +14,7 @@ public class TurretController : FluxStorable
     public float currentFiringTime;
     public float fluxFiringCost;
     
+    
     [Header("CACHE")] 
     public List<Collider2D> targetList = new();
     private GameObject closestTarget;

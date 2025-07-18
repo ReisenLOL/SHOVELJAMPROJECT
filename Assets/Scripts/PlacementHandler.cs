@@ -26,10 +26,10 @@ public class PlacementHandler : MonoBehaviour
     public BoxCollider2D selectionBox;
     public bool isBuilding;
     private Vector3Int pipeStartCell;
-    private Vector3 startingPipeWorldPos;
     private bool isDraggingPipe;
     public GameObject showPlaceholderLine;
     private GameObject currentPlaceholderLine;
+    public List<Fabricator> placedFabricators = new();
     [Header("[UI CACHE]")]
     private BuildingCategory currentCategoryOpen;
     public List<Building> placedBuildings = new();
@@ -128,7 +128,6 @@ public class PlacementHandler : MonoBehaviour
                     pipeStartCell = placementGrid.WorldToCell(worldPos);
                     currentPlaceholderLine = Instantiate(showPlaceholderLine);
                     currentPlaceholderLine.transform.position = worldPos;
-                    startingPipeWorldPos = worldPos;
                     isDraggingPipe = true;
                 }
                 else
@@ -138,6 +137,7 @@ public class PlacementHandler : MonoBehaviour
             }
             else if (Input.GetMouseButton(0) && isDraggingPipe)
             {
+                player.canFire = false;
                 currentPlaceholderLine.transform.Lookat2D(worldPos);
                 currentPlaceholderLine.transform.position = placementGrid.GetCellCenterWorld(pipeStartCell) + (worldPos - pipeStartCell) / 2;
                 currentPlaceholderLine.transform.localScale = new Vector3(Vector3.Distance(placementGrid.GetCellCenterWorld(pipeStartCell), worldPos), 1, 1);
@@ -154,6 +154,10 @@ public class PlacementHandler : MonoBehaviour
                 }
                 PlacePipeLine(pipeStartCell, endCell);
                 Destroy(currentPlaceholderLine);
+                foreach (Fabricator fabricator in placedFabricators)
+                {
+                    fabricator.FindBlueprints();
+                }
                 StopBuilding();
             }
             if (Input.GetMouseButtonDown(1))
@@ -182,6 +186,10 @@ public class PlacementHandler : MonoBehaviour
         newBuilding.transform.rotation = Quaternion.Euler(0,0,rotationAmount);
         newBuilding.player = player;
         newBuilding.GetComponent<SpriteRenderer>().color = Color.black;
+        foreach (Fabricator fabricator in placedFabricators)
+        {
+            fabricator.FindBlueprints();
+        }
         StopBuilding();
     }
     public void SelectBuilding(Building building)
@@ -226,7 +234,7 @@ public class PlacementHandler : MonoBehaviour
     {
         Vector3 pos = placementGrid.GetCellCenterWorld(cell);
         Collider2D hit = Physics2D.OverlapBox(pos, selectionBox.size / 2, 0, LayerMask.GetMask("Building"));
-        if (hit != null)
+        if (hit)
         {
             return;
         }
