@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlacementHandler : MonoBehaviour
 {
     public Building[] allBuildings;
-    public enum BuildingCategory {Pipe, Flux_Generation, Storage, Turret, Defense}
+    public enum BuildingCategory {Pipe, Flux_Generation, Storage, Turret, Defense, Tech}
 
     [Header("[PLACEMENT CACHE]")]
     public PlayerController player;

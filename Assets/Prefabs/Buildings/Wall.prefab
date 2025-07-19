@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5183738644654485561}
   - component: {fileID: 2910835204593929166}
   - component: {fileID: -7004958648887281054}
+  - component: {fileID: 7057147792974462722}
   m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
@@ -108,12 +109,12 @@ MonoBehaviour:
   fluxCost: 25
   buildingID: Wall
   description: A basic block that will stop enemies from passing through.
-  refreshBuildings: 0
   buildingCategory: 4
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 0
 --- !u!61 &5183738644654485561
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,3 +285,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7057147792974462722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910984579059624484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1883e0300af31e479fc2aa180fb3a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFlux: 0
+  player: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  currentState: 0

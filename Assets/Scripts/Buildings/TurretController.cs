@@ -71,7 +71,6 @@ public class TurretController : FluxStorable
             currentFiringTime = 0;
         }
     }
-
     private void CreateTargetting()
     {
         GameObject newTargetDetection = new GameObject();

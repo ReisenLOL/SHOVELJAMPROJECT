@@ -3004,6 +3004,7 @@ MonoBehaviour:
   - {fileID: 8156432763462354373, guid: 5288c42007337b2218338b0d2744c53b, type: 3}
   - {fileID: 2778177135423272274, guid: c230f4f79f0cc9bdaa7f9ebe3f755c9c, type: 3}
   - {fileID: -4963148075233540410, guid: c0ca92db748772c7799ec28541d6c0d6, type: 3}
+  - {fileID: -101655967703565100, guid: 4a3a9ec0cae79c26e8a0ae4dda24d1ee, type: 3}
   player: {fileID: 0}
   selectedBuilding: {fileID: 0}
   placeholderBuilding: {fileID: 0}

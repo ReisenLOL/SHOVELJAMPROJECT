@@ -230,7 +230,7 @@ MonoBehaviour:
   buildingID: Fabricator
   description: Drains flux from connected buildings to automatically build placed
     blueprints.
-  buildingCategory: 0
+  buildingCategory: 5
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0

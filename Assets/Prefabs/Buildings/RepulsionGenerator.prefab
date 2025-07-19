@@ -128,13 +128,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1112895280822288807}
   - component: {fileID: 1182557165152767538}
-  - component: {fileID: 8156432763462354373}
+  - component: {fileID: -101655967703565100}
   - component: {fileID: 5011146188962352117}
   - component: {fileID: 6131951814561416600}
   - component: {fileID: 1772452584482741451}
-  - component: {fileID: 944959153945668172}
+  - component: {fileID: -1312136789304356330}
   m_Layer: 6
-  m_Name: FluxDistributor
+  m_Name: RepulsionGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3309232309772277902, guid: 3d98be155cf7e38dd92c157139adabaa, type: 3}
+  m_Sprite: {fileID: 7054207801179002315, guid: be582f0d16897bde5933f3d5ed33039e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -212,7 +212,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8156432763462354373
+--- !u!114 &-101655967703565100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,15 +221,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8628134785909848455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89495297db9ee1ed7a963880015f7979, type: 3}
+  m_Script: {fileID: 11500000, guid: de0bb8631ad1d2340a840b49e006437c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 150
-  buildingID: Flux Distributor
-  description: Automatically distributes flux wirelessly.
-  buildingCategory: 5
+  fluxCost: 10
+  buildingID: Repulsion Generator
+  description: Knocks back enemies every so often.
+  buildingCategory: 3
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
@@ -240,14 +240,13 @@ MonoBehaviour:
   maxCapacity: 0
   hasInterface: 0
   connectedGrid: {fileID: 0}
-  detectPipes:
-  - {fileID: 8982503448010092056}
+  detectPipes: []
   connectedPipes: []
-  playerInRange: 0
-  range: 2
-  fluxMovementSpeed: 0
-  distributorBeam: {fileID: 910984579059624484, guid: 4be9484b2b837eceabb92a00bf04ba28, type: 3}
-  createdBeam: {fileID: 0}
+  fireRate: 4
+  fluxFiringCost: 5
+  targetList: []
+  knockbackForce: 0
+  range: 4
 --- !u!114 &5011146188962352117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +336,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!82 &944959153945668172
+--- !u!82 &-1312136789304356330
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
