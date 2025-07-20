@@ -258,15 +258,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 50
+  fluxCost: 100
   buildingID: Flux Pump
-  description: 
-  refreshBuildings: 0
+  description: Must be placed on geysers. Generates a large amount of flux from geyers.
   buildingCategory: 1
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 0
   fluxMaxCapacity: 200
   currentFlux: 0
   maxCapacity: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   detectPipes:
   - {fileID: 8982503448010092056}
   connectedPipes: []
-  fluxToProduce: 5
+  fluxToProduce: 8
   fluxProductionRate: 1
   canProduce: 0
   resourceDetection: {fileID: 1440105947893892012}

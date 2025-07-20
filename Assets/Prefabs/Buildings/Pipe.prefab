@@ -168,12 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44adf3ddd96dd95389b083d8fe4ff404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  fluxCost: 10
+  health: 30
+  maxHealth: 30
+  fluxCost: 5
   buildingID: Pipe
-  description: 
-  refreshBuildings: 0
+  description: Transports Flux between buildings.
   buildingCategory: 0
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}

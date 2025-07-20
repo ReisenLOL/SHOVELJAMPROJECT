@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3309232309772277902, guid: 3d98be155cf7e38dd92c157139adabaa, type: 3}
+  m_Sprite: {fileID: -5072551753234493040, guid: 6c63a1763c993f43693a992f688f9d43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 150
+  fluxCost: 225
   buildingID: Flux Distributor
-  description: Automatically distributes flux wirelessly.
+  description: Automatically distributes flux to you wirelessly.
   buildingCategory: 5
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}

@@ -224,19 +224,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a908bd44b9024a414884fb6abd0afb15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  fluxCost: 50
+  health: 300
+  maxHealth: 300
+  fluxCost: 100
   buildingID: Respawn Point
-  description: 
-  refreshBuildings: 0
-  buildingCategory: 4
+  description: Uses flux to respawn the player. Has an interface.
+  buildingCategory: 5
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 0
   fluxMaxCapacity: 150
-  currentFlux: 150
+  currentFlux: 0
   maxCapacity: 0
   hasInterface: 1
   connectedGrid: {fileID: 0}

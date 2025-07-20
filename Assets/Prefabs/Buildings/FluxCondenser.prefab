@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3208449285693566503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5933715298724706184, guid: a51c0973f48ee4d0f8972516d0f52771, type: 3}
+  m_Sprite: {fileID: -8550456150766733810, guid: 687b50309eabd9c368c76f9cab40a183, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,15 +226,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 50
+  fluxCost: 25
   buildingID: Flux Condenser
   description: Passively generates a low amount of Flux from the environment.
-  refreshBuildings: 0
   buildingCategory: 1
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
   currentState: 0
   buildSound: {fileID: 8300000, guid: b26c51b42a1993c4f89d67a20798f03c, type: 3}
+  draggable: 0
   fluxMaxCapacity: 200
   currentFlux: 0
   maxCapacity: 0

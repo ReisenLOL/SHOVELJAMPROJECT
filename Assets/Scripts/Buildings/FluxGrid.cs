@@ -7,6 +7,7 @@ public class FluxGrid : MonoBehaviour
     public float currentFluxStoredTotal;
     public float fluxStorageMaximumTotal;
     public bool maxCapacityTotal;
+    public static bool currentlyMergingGrids; 
     public void StoreFluxTotal(float flux)
     {
         if (!maxCapacityTotal)
@@ -52,6 +53,10 @@ public class FluxGrid : MonoBehaviour
         connectedBuildings.Add(building);
         fluxStorageMaximumTotal += building.fluxMaxCapacity;
         currentFluxStoredTotal += building.currentFlux;
+        if (fluxStorageMaximumTotal > currentFluxStoredTotal)
+        {
+            maxCapacityTotal = false;
+        }
     }
     public void RemoveBuilding(FluxStorable building)
     {
@@ -66,19 +71,23 @@ public class FluxGrid : MonoBehaviour
 
     public void MergeGrids(FluxGrid gridToMergeWith)
     {
-        GameObject newFluxGrid = new GameObject();
-        FluxGrid fluxGrid = newFluxGrid.AddComponent<FluxGrid>();
-        foreach (FluxStorable fluxStorable in connectedBuildings)
+        if (!currentlyMergingGrids)
         {
-            fluxStorable.connectedGrid = fluxGrid;
-            fluxGrid.AddBuilding(fluxStorable);
-        }
+            currentlyMergingGrids = true;
+            GameObject newFluxGrid = new GameObject();
+            FluxGrid fluxGrid = newFluxGrid.AddComponent<FluxGrid>();
+            foreach (FluxStorable fluxStorable in connectedBuildings)
+            {
+                fluxStorable.connectedGrid = fluxGrid;
+                fluxGrid.AddBuilding(fluxStorable);
+            }
 
-        foreach (FluxStorable fluxStorable in gridToMergeWith.connectedBuildings)
-        {
-            fluxStorable.connectedGrid = fluxGrid;
-            fluxGrid.AddBuilding(fluxStorable);
+            foreach (FluxStorable fluxStorable in gridToMergeWith.connectedBuildings)
+            {
+                fluxStorable.connectedGrid = fluxGrid;
+                fluxGrid.AddBuilding(fluxStorable);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

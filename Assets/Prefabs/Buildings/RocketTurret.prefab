@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7054207801179002315, guid: be582f0d16897bde5933f3d5ed33039e, type: 3}
+  m_Sprite: {fileID: -8076729382147768605, guid: e525e509bfa9fa346bbe17eeab306f0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,10 +226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 20
+  fluxCost: 300
   buildingID: Rocket Turret
-  description: The Rule of Danmaku.
-  refreshBuildings: 0
+  description: Shoots an explosive rocket at enemies.
   buildingCategory: 3
   spriteRenderer: {fileID: 0}
   player: {fileID: 0}
@@ -244,7 +243,7 @@ MonoBehaviour:
   detectPipes:
   - {fileID: 8982503448010092056}
   connectedPipes: []
-  projectile: {fileID: -4016616964300858776, guid: fb7e02239263354208532f74328ef06e, type: 3}
+  projectile: {fileID: -4016616964300858776, guid: 435fbbe50f5e1dfdd8d55eda51854f2b, type: 3}
   range: 8
   projectileSpeed: 16
   projectileDamage: 20

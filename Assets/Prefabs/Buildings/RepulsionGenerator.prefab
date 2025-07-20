@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7054207801179002315, guid: be582f0d16897bde5933f3d5ed33039e, type: 3}
+  m_Sprite: {fileID: -7790665612165478526, guid: 2ddb49bf6584061d2ba94a98e6c1a7ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  fluxCost: 10
+  fluxCost: 200
   buildingID: Repulsion Generator
   description: Knocks back enemies every so often.
   buildingCategory: 3
@@ -245,7 +245,7 @@ MonoBehaviour:
   fireRate: 4
   fluxFiringCost: 5
   targetList: []
-  knockbackForce: 0
+  knockbackForce: 40
   range: 4
 --- !u!114 &5011146188962352117
 MonoBehaviour:

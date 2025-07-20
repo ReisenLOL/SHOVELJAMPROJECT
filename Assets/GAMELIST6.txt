@@ -17,3 +17,14 @@ x more enemies (mostly done?)
 - wave design
 - balancing
 x make placement of pipes better (placeholder funny idk how to fix lol)
+
+okay final to do list 
+x make a sprite for fabricator, xdistributor, xrepulsion field, xwalls, xrocket turret, xall 3 flux tank sizes, xflux condenser generator
+x get a name for the game. it's still touhou themed so whatever i can figure out for flux and touhou. Touhou Flux Conduit Path
+/ design waves, and either a bossfight at the end or make it endless. endless is easier. we will make it endless.
+- balance game (waves, all buildings)
+x make the main menu more pretty. currently just Play, Options, Credits, Exit button ontop of a frame.
+- optionally add some ingame music, functionalize the options menu to set the music
+- create an ingame tutorial, no need to make it complex just pages of images and arrows and text.
+- fix any bug you find.
+- create the itch.io page, make it cool
